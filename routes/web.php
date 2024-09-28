@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\RepresentanteController;
 
+
 // Rota inicial para a página de boas-vindas
 Route::get('/', function () {
     return redirect()->route('clientes.index');

@@ -1,16 +1,28 @@
-# To prevent access to .env and other files
+# Evitar o acesso a arquivos sensíveis como .env
 <Files .*>
-# Apache 2.2
-<IfModule !mod_authz_core.c>
-Order deny,allow
-Deny from all
-</IfModule>
-# Apache 2.4
-<IfModule mod_authz_core.c>
-Require all denied
-</IfModule>
+    # Apache 2.2
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+    # Apache 2.4
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
 </Files>
 
-<IfModule mod_alias.c>
-RedirectMatch 301 ^/$ https://update.pattyweb.com.br/public
+# Redirecionar todas as requisições para a pasta /public
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirecionar requisições para a pasta public
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+# Proteção contra diretórios com listagem desabilitada
+Options -Indexes
+
+# Evitar acesso direto ao .htaccess
+<Files .htaccess>
+    Require all denied
+</Files>
