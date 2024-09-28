@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 28/09/2024 às 12:01
+-- Tempo de geração: 28/09/2024 às 14:11
 -- Versão do servidor: 5.7.23-23
 -- Versão do PHP: 8.1.29
 
@@ -122,7 +122,7 @@ INSERT INTO `clientes` (`id`, `nome`, `cpf`, `data_nascimento`, `sexo`, `enderec
 (17, 'Cliente 1', '123.456.789-00', '1985-01-01', 'Feminino', 'Rua Exemplo, 123', 'cliente1@exemplo.com', '99999-1111', 1, NULL, '2024-09-28 16:58:29'),
 (18, 'Cliente 2', '234.567.890-11', '1990-02-02', 'Feminino', 'Avenida Exemplo, 456', 'cliente2@exemplo.com', '99999-2222', 2, NULL, NULL),
 (19, 'Cliente 20', '222.456.789-22', '2024-09-01', 'Feminino', 'QE 20, Bloco G, Rio de Janeiro', 'teste55@gmail.com', '21996088363', 14, '2024-09-28 17:00:31', '2024-09-28 17:00:31'),
-(20, 'Cliente 21', '666.456.789-11', '1999-02-24', 'Feminino', 'QE 20, Bloco G, Rio Grande do Sul', 'teste32@gmail.com', '21996088321', 15, '2024-09-28 17:52:26', '2024-09-28 17:52:26');
+(20, 'Cliente 25', '666.456.789-11', '1999-02-24', 'Feminino', 'QE 20, Bloco G, Rio Grande do Sul', 'teste32@gmail.com', '21996088321', 15, '2024-09-28 17:52:26', '2024-09-28 20:10:11');
 
 -- --------------------------------------------------------
 
@@ -198,7 +198,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2024_09_28_124831_create_cidades_table', 2),
 (5, '2024_09_28_124822_create_clientes_table', 3),
 (7, '2024_09_28_124838_create_representantes_table', 4),
-(8, '2024_09_28_133223_add_extra_fields_to_clientes_table', 5);
+(8, '2024_09_28_133223_add_extra_fields_to_clientes_table', 5),
+(10, '2024_09_28_155144_create_personal_access_tokens_table', 6);
 
 -- --------------------------------------------------------
 
@@ -210,6 +211,25 @@ CREATE TABLE `password_reset_tokens` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -268,10 +288,16 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('5mRW035H0gVoLlDk0LDubfX6cHuw8s4Nt1Wen6Pq', NULL, '179.214.113.93', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZjA5S0xwZFlzMEY3NzhraTNmVncybUZYUnJlQjl5bzVOMGN0dmV2RyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDY6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9wdWJsaWMvY2xpZW50ZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727535450),
-('cNtWr1lNdXiPO4NGHcUsmR9zn3UWLCuVGDaMoChL', NULL, '179.214.113.93', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNkc1Q3ZOWXhGbERlZ0lGTktkUGREUmxKcm9GbGVpZ0hhdE9yYWhrQiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDY6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9wdWJsaWMvY2xpZW50ZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727535434),
-('hOrOF2BPXbX0OVyI53CtZCvtEsZkt85jwCP8uATA', NULL, '51.81.46.212', '', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSWlJaFVxRjhtVWRTRnBuVG5SdXNSRE1zVkdpaG1aOGJoZXAxWmtyTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727533737),
-('yZE8nbhrDkzwucfviQJSNudFXVl4KUo7jKQYJN4b', NULL, '51.81.46.212', '', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRkc5Q2d4V0RyaTY1RE1aQWxsS1BQdElYUjg3WTNlcEtJZ0JtTXJ2ZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9wdWJsaWMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727533732);
+('1d3nAvMsvTZiSyTVXnQyPTX9cAywQ2O4ZPd2b4Yl', NULL, '167.94.146.57', 'Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYXdqcFNpS0NSaHlnSkExN0dxZWpUT2NYMTlSVTBzd29iTFRKcHZFZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHBzOi8vd3d3LnVwZGF0ZS5wYXR0eXdlYi5jb20uYnIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727541405),
+('9cb9UK0wbgR0oDzx4iqJePg5sjRxnBJZfp8Rq9E7', NULL, '199.45.155.68', 'Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUlVnalRobVFaaE5hRzFSS3kyWWp1RGhzMHh1eW9sRlRVSG5hSFN6TCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly93d3cudXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727540252),
+('A0HJY6X8ZyPVwaOSABvZwbthlbG6oPDVaHVqD5KW', NULL, '167.94.146.57', 'Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiekpaM1I2Z1NwZkRsSVM5M0FVQm14MlJLSXVWYUtlbFdGT1dqNTVQbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHBzOi8vd3d3LnVwZGF0ZS5wYXR0eXdlYi5jb20uYnIvY2xpZW50ZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727541418),
+('cNtWr1lNdXiPO4NGHcUsmR9zn3UWLCuVGDaMoChL', NULL, '179.214.113.93', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNkc1Q3ZOWXhGbERlZ0lGTktkUGREUmxKcm9GbGVpZ0hhdE9yYWhrQiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727543412),
+('enNxilYrsZBWRXNWLdNbVds7DrFid3K8lSsLa2FV', NULL, '179.214.113.93', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUGVFZGpyaFRMSWFUd3NuWEJ1UlhNR1hGVjVZYUwxeEl1dG90VURNVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727542709),
+('GCyXfpqEsAZMCOf7yXDs0LCm0vI12ZaRbgiwGlfV', NULL, '199.45.155.68', 'Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMFZ2YmwzTWpVNElXY1d2SnJoMFlRYlZNcU9KYnhjU0M1elZQWkEwWSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly93d3cudXBkYXRlLnBhdHR5d2ViLmNvbS5iciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727540243),
+('gz0lioaoXwY2aXQBfEODgcg8YvceUhLn84ZcswDH', NULL, '52.167.144.225', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ2lWdkpHQnFMWktUZkh4OU9mamgxcHk2Mlc3WFNvMkM2MmR6THZwSiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727540034),
+('jx4TIsV6sh8HarA30y1hPXEKM0iBYmhrJX9Vj2NM', NULL, '54.156.251.192', 'Mozilla/5.0 (compatible)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoid2wwMEYyZXV0eGF6aDhqbUowTVRSN242aHBYSTZLbGhvbWtoZ3RNTSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727539768),
+('qRglJeyTXVfe79QrXBqNyx3vEVJDhnHGfSJcvFPo', NULL, '93.119.227.91', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZFRlNlpDcnZydlZ1MHlsNHZqeE1HZmhoeEZZR1pwenBQaXd4N2Y5biI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHBzOi8vd3d3LnVwZGF0ZS5wYXR0eXdlYi5jb20uYnIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727543388),
+('SjS5ibiMwg76GUaSudJVeIi8xIqYn1POeVanf7h0', NULL, '93.119.227.91', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTVhINUNoTjYyYTBFT3NmV2I1dXBvR2xRZUhoUzJMRVJDRkdvZVFBcSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHBzOi8vd3d3LnVwZGF0ZS5wYXR0eXdlYi5jb20uYnIvY2xpZW50ZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727543389);
 
 -- --------------------------------------------------------
 
@@ -353,6 +379,14 @@ ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
+-- Índices de tabela `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
 -- Índices de tabela `representantes`
 --
 ALTER TABLE `representantes`
@@ -388,7 +422,7 @@ ALTER TABLE `cidades`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `failed_jobs`
@@ -406,7 +440,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT de tabela `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `representantes`
