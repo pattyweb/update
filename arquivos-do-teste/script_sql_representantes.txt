@@ -1,0 +1,16 @@
+Scripts SQL
+Como mencionado nas obrigatoriedades, crie os scripts SQL. Aqui estão exemplos de scripts para retornar representantes por cliente e por cidade:
+
+Representantes por Cliente:
+
+SELECT r.nome 
+FROM representantes r
+JOIN clientes c ON c.cidade_id = r.cidade_id
+WHERE c.id = ?;
+
+
+Representantes por Cidade:
+
+SELECT * 
+FROM representantes 
+WHERE cidade_id = ?;
