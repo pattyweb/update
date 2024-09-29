@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\RepresentanteController;
+use App\Http\Controllers\CidadeController;
 
 
 // Rota inicial para a página de boas-vindas
@@ -17,8 +18,14 @@ Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.ind
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create'); // Formulário de criação de clientes
 Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store'); // Salvar novo cliente
 
-// Rotas para representantes
-Route::get('/representantes', [RepresentanteController::class, 'index'])->name('representantes.index'); // Listar representantes
-Route::get('/representantes/cidade/{cidade_id}', [RepresentanteController::class, 'byCidade'])->name('representantes.byCidade'); // Filtrar representantes por cidade
+// Rotas para as views de Representantes
+// Rota para listar representantes
+Route::get('/representantes', [RepresentanteController::class, 'index'])->name('representantes.index');
+Route::get('/representantes/create', [RepresentanteController::class, 'create'])->name('representantes.create');
+Route::get('/representantes/{id}/edit', [RepresentanteController::class, 'edit'])->name('representantes.edit');
+
+
+// Rotas para CIDADES (web)
+Route::resource('cidades', CidadeController::class);
 
 

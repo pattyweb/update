@@ -65,106 +65,112 @@
     <!-- Script para carregar os clientes via API com filtro e paginação manual -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-    const apiURL = '{{ url('/api/clientes') }}';
-    let clientesPorPagina = 10;
-    let paginaAtual = 1;
-    let clientesData = [];
+            const apiURL = '{{ url('/api/clientes') }}';
+            let clientesPorPagina = 10;
+            let paginaAtual = 1;
+            let clientesData = [];
 
-    // Função para carregar clientes com filtros e paginação
-    function loadClientes(page = 1) {
-        paginaAtual = page;
+            // Função para carregar clientes com filtros e paginação
+            function loadClientes(page = 1) {
+                paginaAtual = page;
 
-        const nome = document.getElementById('nome').value;
-        const cpf = document.getElementById('cpf').value;
-        const dataNascimento = document.getElementById('data_nascimento').value;
-        const cidade = document.getElementById('cidade').value;
-        const sexo = document.getElementById('sexo').value;
+                const nome = document.getElementById('nome').value;
+                const cpf = document.getElementById('cpf').value;
+                const dataNascimento = document.getElementById('data_nascimento').value;
+                const cidade = document.getElementById('cidade').value;
+                const sexo = document.getElementById('sexo').value;
 
-        const query = `?page=${page}&nome=${encodeURIComponent(nome)}&cpf=${encodeURIComponent(cpf)}&data_nascimento=${encodeURIComponent(dataNascimento)}&cidade=${encodeURIComponent(cidade)}&sexo=${encodeURIComponent(sexo)}`;
+                const query = `?page=${page}&nome=${encodeURIComponent(nome)}&cpf=${encodeURIComponent(cpf)}&data_nascimento=${encodeURIComponent(dataNascimento)}&cidade=${encodeURIComponent(cidade)}&sexo=${encodeURIComponent(sexo)}`;
 
-        fetch(apiURL + query)
-            .then(response => response.json())
-            .then(data => {
-                // Atualiza clientesData para ser a lista de clientes retornada
-                clientesData = data.data; // Acessando a lista de clientes dentro do objeto paginado
-                
-                mostrarClientesPorPagina();
-                configurarPaginacao(data);
-            })
-            .catch(error => console.error('Erro ao carregar clientes:', error));
-    }
-
-    // Função para exibir os clientes na página atual
-    function mostrarClientesPorPagina() {
-        let clientList = '';
-
-        clientesData.forEach(cliente => {
-            clientList += `
-                <tr>
-                    <td>${cliente.nome}</td>
-                    <td>${cliente.cpf}</td>
-                    <td>${cliente.data_nascimento ? new Date(cliente.data_nascimento).toLocaleDateString() : 'Não Informado'}</td>
-                    <td>${cliente.cidade ? cliente.cidade.nome : 'Não Informada'}</td>
-                    <td>${cliente.sexo}</td>
-                    <td><a href="/clientes/${cliente.id}/edit" class="btn btn-warning">Editar</a></td>
-                    <td>
-                        <form action="/clientes/${cliente.id}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            `;
-        });
-
-        document.getElementById('client-list').innerHTML = clientList;
-    }
-
-    // Função para configurar os links de paginação
-    function configurarPaginacao(paginationData) {
-        const totalPaginas = paginationData.last_page;
-        let paginationLinks = '';
-
-        for (let i = 1; i <= totalPaginas; i++) {
-            if (i === paginationData.current_page) {
-                paginationLinks += `<span class="page-link active">${i}</span>`;
-            } else {
-                paginationLinks += `<a href="#" class="page-link" data-page="${i}">${i}</a>`;
+                fetch(apiURL + query)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao carregar clientes');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data && Array.isArray(data.data)) {
+                            clientesData = data.data; // Acessando a lista de clientes dentro do objeto paginado
+                            mostrarClientesPorPagina();
+                            configurarPaginacao(data);
+                        } else {
+                            console.error('Erro: Resposta inesperada da API', data);
+                        }
+                    })
+                    .catch(error => console.error('Erro ao carregar clientes:', error));
             }
-        }
 
-        document.getElementById('pagination-nav').innerHTML = `
-            <ul class="pagination" style="display: flex; list-style-type: none;">
-                ${paginationLinks}
-            </ul>
-        `;
+            // Função para exibir os clientes na página atual
+            function mostrarClientesPorPagina() {
+                let clientList = '';
 
-        // Adicionar eventos aos links de paginação
-        document.querySelectorAll('.page-link').forEach(link => {
-            link.addEventListener('click', function(event) {
+                clientesData.forEach(cliente => {
+                    clientList += `
+                        <tr>
+                            <td>${cliente.nome}</td>
+                            <td>${cliente.cpf}</td>
+                            <td>${cliente.data_nascimento ? new Date(cliente.data_nascimento).toLocaleDateString() : 'Não Informado'}</td>
+                            <td>${cliente.cidade ? cliente.cidade.nome : 'Não Informada'}</td>
+                            <td>${cliente.sexo}</td>
+                            <td><a href="/clientes/${cliente.id}/edit" class="btn btn-warning">Editar</a></td>
+                            <td>
+                                <form action="/clientes/${cliente.id}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                document.getElementById('client-list').innerHTML = clientList;
+            }
+
+            // Função para configurar os links de paginação
+            function configurarPaginacao(paginationData) {
+                const totalPaginas = paginationData.last_page;
+                let paginationLinks = '';
+
+                for (let i = 1; i <= totalPaginas; i++) {
+                    if (i === paginationData.current_page) {
+                        paginationLinks += `<span class="page-link active">${i}</span>`;
+                    } else {
+                        paginationLinks += `<a href="#" class="page-link" data-page="${i}">${i}</a>`;
+                    }
+                }
+
+                document.getElementById('pagination-nav').innerHTML = `
+                    <ul class="pagination" style="display: flex; list-style-type: none;">
+                        ${paginationLinks}
+                    </ul>
+                `;
+
+                // Adicionar eventos aos links de paginação
+                document.querySelectorAll('.page-link').forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const page = parseInt(event.target.getAttribute('data-page'));
+                        loadClientes(page);
+                    });
+                });
+            }
+
+            // Carregar clientes na primeira carga da página
+            loadClientes();
+
+            // Evento de filtro
+            document.getElementById('filtro-clientes').addEventListener('submit', function(event) {
                 event.preventDefault();
-                const page = parseInt(event.target.getAttribute('data-page'));
-                loadClientes(page);
+                loadClientes();
+            });
+
+            // Limpar filtros
+            document.getElementById('limpar-filtros').addEventListener('click', function() {
+                document.getElementById('filtro-clientes').reset();
+                loadClientes();
             });
         });
-    }
-
-    // Carregar clientes na primeira carga da página
-    loadClientes();
-
-    // Evento de filtro
-    document.getElementById('filtro-clientes').addEventListener('submit', function(event) {
-        event.preventDefault();
-        loadClientes();
-    });
-
-    // Limpar filtros
-    document.getElementById('limpar-filtros').addEventListener('click', function() {
-        document.getElementById('filtro-clientes').reset();
-        loadClientes();
-    });
-});
-
     </script>
 @endsection

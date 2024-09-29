@@ -55,8 +55,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const apiURL = '{{ url("/api/clientes/" . $cliente->id) }}';  // URL para o cliente atual
-        const apiCidadesURL = '{{ url("/api/cidades") }}';  // URL para buscar cidades
+        const clienteId = '{{ $cliente->id }}';  // Pegar o ID do cliente da rota
+        const apiURL = `/api/clientes/${clienteId}`;  // URL da API para o cliente atual
+        const apiCidadesURL = '/api/cidades';  // URL para buscar cidades
 
         // Função para carregar o cliente e cidades via API
         function loadCliente() {
@@ -75,8 +76,9 @@
                     // Carregar cidades e selecionar a correta
                     fetch(apiCidadesURL)
                         .then(response => response.json())
-                        .then(cidades => {
+                        .then(data => {
                             let cidadeOptions = '<option value="">Selecione uma cidade</option>';
+                            const cidades = data.data || data;  // Verifica se é paginado ou não
                             cidades.forEach(cidade => {
                                 cidadeOptions += `<option value="${cidade.id}" ${cliente.cidade_id == cidade.id ? 'selected' : ''}>${cidade.nome}</option>`;
                             });

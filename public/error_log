@@ -1,0 +1,2 @@
+[28-Sep-2024 20:09:43 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\Api\CidadeApiController as CidadeApiController because the name is already in use in /home2/patty658/update.pattyweb.com.br/routes/api.php on line 24
+[28-Sep-2024 20:11:36 UTC] PHP Fatal error:  Cannot use App\Http\Controllers\Api\CidadeApiController as CidadeApiController because the name is already in use in /home2/patty658/update.pattyweb.com.br/routes/api.php on line 24

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 28/09/2024 às 14:11
+-- Tempo de geração: 28/09/2024 às 21:38
 -- Versão do servidor: 5.7.23-23
 -- Versão do PHP: 8.1.29
 
@@ -63,21 +63,17 @@ CREATE TABLE `cidades` (
 --
 
 INSERT INTO `cidades` (`id`, `nome`, `created_at`, `updated_at`) VALUES
-(1, 'Cidade 1', NULL, NULL),
-(2, 'Cidade 2', NULL, NULL),
-(3, 'Cidade 3', NULL, NULL),
-(4, 'Cidade 4', NULL, NULL),
-(5, 'Cidade 5', NULL, NULL),
-(6, 'Cidade 6', NULL, NULL),
-(7, 'Cidade 7', NULL, NULL),
-(8, 'Cidade 8', NULL, NULL),
 (9, 'Cidade 9', NULL, NULL),
-(10, 'Cidade 10', NULL, NULL),
 (11, 'Cidade 11', NULL, NULL),
 (12, 'Cidade 12', NULL, NULL),
 (13, 'Cidade 13', NULL, NULL),
-(14, 'Cidade 14', NULL, NULL),
-(15, 'Cidade 15', NULL, NULL);
+(16, 'Cidade 156', '2024-09-28 23:45:20', '2024-09-28 23:45:20'),
+(17, 'Cidade 111', '2024-09-29 01:59:13', '2024-09-29 03:30:37'),
+(18, 'São Paulo', '2024-09-29 02:08:53', '2024-09-29 02:08:53'),
+(20, 'Brasília', '2024-09-29 02:49:40', '2024-09-29 02:49:40'),
+(21, 'Rio de Janeiro', '2024-09-29 03:33:52', '2024-09-29 03:33:52'),
+(22, 'Goiânia', '2024-09-29 03:34:05', '2024-09-29 03:34:05'),
+(23, 'Amapá', '2024-09-29 03:34:12', '2024-09-29 03:34:12');
 
 -- --------------------------------------------------------
 
@@ -104,25 +100,24 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nome`, `cpf`, `data_nascimento`, `sexo`, `endereco`, `email`, `telefone`, `cidade_id`, `created_at`, `updated_at`) VALUES
-(1, 'Cliente 1', '', NULL, 'Masculino', '', 'cliente1@teste.com', '123456789', 1, NULL, NULL),
-(2, 'Cliente 2', '', NULL, 'Masculino', '', 'cliente2@teste.com', '987654321', 2, NULL, NULL),
-(3, 'Cliente 3', '', NULL, 'Masculino', '', 'cliente3@teste.com', '456123789', 1, NULL, NULL),
-(4, 'Cliente 4', '', NULL, 'Masculino', '', 'cliente4@teste.com', '789456123', 3, NULL, NULL),
-(5, 'Cliente 5', '', NULL, 'Masculino', '', 'cliente5@teste.com', '321654987', 2, NULL, NULL),
-(6, 'Cliente 6', '', NULL, 'Masculino', '', 'cliente6@teste.com', '159753486', 1, NULL, NULL),
-(7, 'Cliente 7', '', NULL, 'Masculino', '', 'cliente7@teste.com', '357951486', 3, NULL, NULL),
-(8, 'Cliente 8', '', NULL, 'Masculino', '', 'cliente8@teste.com', '654987321', 1, NULL, NULL),
-(9, 'Cliente 9', '555.456.789-11', '2000-02-02', 'Feminino', 'QE 20, Bloco G, Minas Gerais', 'cliente9@teste.com', '852963147', 2, NULL, '2024-09-28 17:51:25'),
-(10, 'Cliente 10', '', NULL, 'Masculino', '', 'cliente10@teste.com', '963741852', 3, NULL, NULL),
-(11, 'Cliente 11', '', NULL, 'Masculino', '', 'cliente11@teste.com', '123123123', 1, NULL, NULL),
-(12, 'Cliente 12', '', NULL, 'Masculino', '', 'cliente12@teste.com', '456456456', 2, NULL, NULL),
-(13, 'Cliente 13', '', NULL, 'Masculino', '', 'cliente13@teste.com', '789789789', 3, NULL, NULL),
-(14, 'Cliente 14', '', NULL, 'Masculino', '', 'cliente14@teste.com', '987987987', 1, NULL, NULL),
-(15, 'Cliente 15', '', NULL, 'Masculino', '', 'cliente15@teste.com', '654654654', 2, NULL, NULL),
-(17, 'Cliente 1', '123.456.789-00', '1985-01-01', 'Feminino', 'Rua Exemplo, 123', 'cliente1@exemplo.com', '99999-1111', 1, NULL, '2024-09-28 16:58:29'),
-(18, 'Cliente 2', '234.567.890-11', '1990-02-02', 'Feminino', 'Avenida Exemplo, 456', 'cliente2@exemplo.com', '99999-2222', 2, NULL, NULL),
-(19, 'Cliente 20', '222.456.789-22', '2024-09-01', 'Feminino', 'QE 20, Bloco G, Rio de Janeiro', 'teste55@gmail.com', '21996088363', 14, '2024-09-28 17:00:31', '2024-09-28 17:00:31'),
-(20, 'Cliente 25', '666.456.789-11', '1999-02-24', 'Feminino', 'QE 20, Bloco G, Rio Grande do Sul', 'teste32@gmail.com', '21996088321', 15, '2024-09-28 17:52:26', '2024-09-28 20:10:11');
+(25, 'João da Silva', '123.456.789-00', '1990-05-10', 'Masculino', 'Rua Principal, 123', 'joao@example.com', '11987654321', 9, '2024-09-29 03:21:30', '2024-09-29 03:21:30'),
+(26, 'Natanael', '111.456.789-02', '2019-01-29', 'Masculino', 'QE 20, Bloco G, São Paulo', 'pattyxica24@gmail.com', '77996088377', 16, '2024-09-29 03:29:26', '2024-09-29 03:30:23'),
+(27, 'Antonio', '666.456.789-11', '2012-01-29', 'Masculino', 'QE 20, Bloco G, São Paulo', 'teste@gmail.com', '22996088322', 17, '2024-09-29 03:33:14', '2024-09-29 03:33:14'),
+(28, 'Ana Silva', '123.456.789-01', '1990-01-01', 'Feminino', 'Rua das Flores, 123', 'ana.silva@email.com', '999999999', 9, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(29, 'João Pereira', '123.456.789-02', '1992-02-02', 'Masculino', 'Avenida Central, 456', 'joao.pereira@email.com', '999999998', 9, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(30, 'Maria Oliveira', '123.456.789-03', '1993-03-03', 'Feminino', 'Rua da Paz, 789', 'maria.oliveira@email.com', '999999997', 16, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(31, 'Carlos Souza', '123.456.789-04', '1994-04-04', 'Masculino', 'Rua dos Andradas, 101', 'carlos.souza@email.com', '999999996', 16, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(32, 'Fernanda Lima', '123.456.789-05', '1995-05-05', 'Feminino', 'Rua São João, 202', 'fernanda.lima@email.com', '999999995', 17, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(33, 'Ricardo Almeida', '123.456.789-06', '1996-06-06', 'Masculino', 'Rua Dom Pedro, 303', 'ricardo.almeida@email.com', '999999994', 17, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(34, 'Patrícia Santos', '123.456.789-07', '1997-07-07', 'Feminino', 'Rua Bento Gonçalves, 404', 'patricia.santos@email.com', '999999993', 9, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(35, 'Lucas Rocha', '123.456.789-08', '1998-08-08', 'Masculino', 'Rua Sete de Setembro, 505', 'lucas.rocha@email.com', '999999992', 9, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(36, 'Isabela Costa', '123.456.789-09', '1999-09-09', 'Feminino', 'Rua Marechal Deodoro, 606', 'isabela.costa@email.com', '999999991', 16, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(37, 'Thiago Nunes', '123.456.789-10', '1990-10-10', 'Masculino', 'Rua Osvaldo Aranha, 707', 'thiago.nunes@email.com', '999999990', 16, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(38, 'Gabriela Souza', '123.456.789-11', '1991-11-11', 'Feminino', 'Rua General Osório, 808', 'gabriela.souza@email.com', '999999989', 17, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(39, 'Marcelo Ribeiro', '123.456.789-12', '1992-12-12', 'Masculino', 'Rua XV de Novembro, 909', 'marcelo.ribeiro@email.com', '999999988', 17, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(40, 'Letícia Fonseca', '123.456.789-13', '1993-01-13', 'Feminino', 'Rua Padre Cacique, 101', 'leticia.fonseca@email.com', '999999987', 9, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(41, 'Rafael Moraes', '123.456.789-14', '1994-02-14', 'Masculino', 'Rua Fernando Ferrari, 202', 'rafael.moraes@email.com', '999999986', 9, '2024-09-29 00:37:36', '2024-09-29 00:37:36'),
+(42, 'Camila Torres', '123.456.789-15', '1995-03-15', 'Feminino', 'Rua dos Navegantes, 303', 'camila.torres@email.com', '999999985', 16, '2024-09-29 00:37:36', '2024-09-29 00:37:36');
 
 -- --------------------------------------------------------
 
@@ -252,21 +247,11 @@ CREATE TABLE `representantes` (
 --
 
 INSERT INTO `representantes` (`id`, `nome`, `telefone`, `cidade_id`, `created_at`, `updated_at`) VALUES
-(1, 'Representante 1', '111111111', 1, NULL, NULL),
-(2, 'Representante 2', '222222222', 2, NULL, NULL),
-(3, 'Representante 3', '333333333', 3, NULL, NULL),
-(4, 'Representante 4', '444444444', 4, NULL, NULL),
-(5, 'Representante 5', '555555555', 5, NULL, NULL),
-(6, 'Representante 6', '666666666', 6, NULL, NULL),
-(7, 'Representante 7', '777777777', 7, NULL, NULL),
-(8, 'Representante 8', '888888888', 8, NULL, NULL),
-(9, 'Representante 9', '999999999', 9, NULL, NULL),
-(10, 'Representante 10', '101010101', 10, NULL, NULL),
-(11, 'Representante 11', '111111111', 11, NULL, NULL),
-(12, 'Representante 12', '121212121', 12, NULL, NULL),
-(13, 'Representante 13', '131313131', 13, NULL, NULL),
-(14, 'Representante 14', '141414141', 14, NULL, NULL),
-(15, 'Representante 15', '151515151', 15, NULL, NULL);
+(8, 'Representante 8', '888888888', 16, NULL, '2024-09-29 02:35:11'),
+(19, 'Representante 9', '9999999999', 9, '2024-09-29 01:28:29', '2024-09-29 01:28:37'),
+(42, 'Representante 111', '1010101011', 9, '2024-09-29 02:50:03', '2024-09-29 03:30:52'),
+(43, 'Representante 2', '21996088363', 18, '2024-09-29 03:38:13', '2024-09-29 03:38:13'),
+(44, 'Representante 23', '77996088377', 21, '2024-09-29 03:38:33', '2024-09-29 03:38:33');
 
 -- --------------------------------------------------------
 
@@ -288,16 +273,11 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('1d3nAvMsvTZiSyTVXnQyPTX9cAywQ2O4ZPd2b4Yl', NULL, '167.94.146.57', 'Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYXdqcFNpS0NSaHlnSkExN0dxZWpUT2NYMTlSVTBzd29iTFRKcHZFZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHBzOi8vd3d3LnVwZGF0ZS5wYXR0eXdlYi5jb20uYnIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727541405),
-('9cb9UK0wbgR0oDzx4iqJePg5sjRxnBJZfp8Rq9E7', NULL, '199.45.155.68', 'Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUlVnalRobVFaaE5hRzFSS3kyWWp1RGhzMHh1eW9sRlRVSG5hSFN6TCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly93d3cudXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727540252),
-('A0HJY6X8ZyPVwaOSABvZwbthlbG6oPDVaHVqD5KW', NULL, '167.94.146.57', 'Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiekpaM1I2Z1NwZkRsSVM5M0FVQm14MlJLSXVWYUtlbFdGT1dqNTVQbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHBzOi8vd3d3LnVwZGF0ZS5wYXR0eXdlYi5jb20uYnIvY2xpZW50ZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727541418),
-('cNtWr1lNdXiPO4NGHcUsmR9zn3UWLCuVGDaMoChL', NULL, '179.214.113.93', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNkc1Q3ZOWXhGbERlZ0lGTktkUGREUmxKcm9GbGVpZ0hhdE9yYWhrQiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727543412),
-('enNxilYrsZBWRXNWLdNbVds7DrFid3K8lSsLa2FV', NULL, '179.214.113.93', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUGVFZGpyaFRMSWFUd3NuWEJ1UlhNR1hGVjVZYUwxeEl1dG90VURNVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727542709),
-('GCyXfpqEsAZMCOf7yXDs0LCm0vI12ZaRbgiwGlfV', NULL, '199.45.155.68', 'Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMFZ2YmwzTWpVNElXY1d2SnJoMFlRYlZNcU9KYnhjU0M1elZQWkEwWSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly93d3cudXBkYXRlLnBhdHR5d2ViLmNvbS5iciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727540243),
-('gz0lioaoXwY2aXQBfEODgcg8YvceUhLn84ZcswDH', NULL, '52.167.144.225', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ2lWdkpHQnFMWktUZkh4OU9mamgxcHk2Mlc3WFNvMkM2MmR6THZwSiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727540034),
-('jx4TIsV6sh8HarA30y1hPXEKM0iBYmhrJX9Vj2NM', NULL, '54.156.251.192', 'Mozilla/5.0 (compatible)', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoid2wwMEYyZXV0eGF6aDhqbUowTVRSN242aHBYSTZLbGhvbWtoZ3RNTSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jbGllbnRlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1727539768),
-('qRglJeyTXVfe79QrXBqNyx3vEVJDhnHGfSJcvFPo', NULL, '93.119.227.91', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZFRlNlpDcnZydlZ1MHlsNHZqeE1HZmhoeEZZR1pwenBQaXd4N2Y5biI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHBzOi8vd3d3LnVwZGF0ZS5wYXR0eXdlYi5jb20uYnIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727543388),
-('SjS5ibiMwg76GUaSudJVeIi8xIqYn1POeVanf7h0', NULL, '93.119.227.91', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTVhINUNoTjYyYTBFT3NmV2I1dXBvR2xRZUhoUzJMRVJDRkdvZVFBcSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDM6Imh0dHBzOi8vd3d3LnVwZGF0ZS5wYXR0eXdlYi5jb20uYnIvY2xpZW50ZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1727543389);
+('0P5o6AWYfmwnZ6pJZekLAGgTqy34b1VQAJS3LKkl', NULL, '34.221.207.104', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRG5wMk5TcWgzVE1ETzdLdXhwZlk5YkxidGJmelZBT3lpckhoRXgxUyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly91cGRhdGUucGF0dHl3ZWIuY29tLmJyL2NsaWVudGVzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1727570243),
+('dfYATtkuulk8QiXYSJcJj1h9JrdtOGBvJfskZ9Xk', NULL, '179.214.113.93', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiY0dhUGw5b3c3SjN3b3VBdFVpOWJ4eG9VWVVmZ1RSVGQyN3M5MThTYyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHBzOi8vdXBkYXRlLnBhdHR5d2ViLmNvbS5ici9jaWRhZGVzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1727570322),
+('DovX0C6hn3QFYeYV8oAUSAJR3z8iWNF9y9BecGHd', NULL, '34.221.207.104', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNE5RcUswb2YycXlWUEFZRTN1TFRwVVBGUDM2d3BqTEdzdGpGZEhKNCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly91cGRhdGUucGF0dHl3ZWIuY29tLmJyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1727570243),
+('JVPAHLU9WOKH7KFmadReCBnHlKXu7dzHafb9C1zH', NULL, '54.212.229.5', 'Mozilla/5.0 (Linux; Android 13; SM-A037U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiN3gwOEMweXZnZFhQOUZTbjQxdWptaVFXbGE3eTZhbFhORTJDd0RoRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly91cGRhdGUucGF0dHl3ZWIuY29tLmJyL2NsaWVudGVzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1727570243),
+('qYwAuVsXiAmUPJNPoJVr83QVEgnavhXRpnxZ79xm', NULL, '34.220.63.51', 'Mozilla/5.0 (Linux; Android 13; SM-A037U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWnZYSFduZndzZ1FiOFU3U1ZYNHF1TlB3RkJINTRMazhUdkppb1FKeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly91cGRhdGUucGF0dHl3ZWIuY29tLmJyL2NsaWVudGVzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1727570261);
 
 -- --------------------------------------------------------
 
@@ -315,6 +295,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Test User', 'test@example.com', '2024-09-29 02:11:20', '$2y$12$OLqGroyhp2zQVEV4df48iOhbii0pGFDcsm4JaFz.Ai0vueizpb0XG', 'IIaj4ruuXa', '2024-09-29 02:11:20', '2024-09-29 02:11:20');
 
 --
 -- Índices para tabelas despejadas
@@ -416,13 +403,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de tabela `failed_jobs`
@@ -452,13 +439,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de tabela `representantes`
 --
 ALTER TABLE `representantes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas

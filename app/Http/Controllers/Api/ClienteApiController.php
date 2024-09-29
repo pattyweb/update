@@ -14,34 +14,34 @@ class ClienteApiController extends Controller
         // Inicia uma query básica em 'Cliente'
         $query = Cliente::with('cidade');
 
-        // Verifica se o parâmetro 'nome' foi enviado e adiciona à query
+        // Filtrar por nome
         if ($request->has('nome') && !empty($request->nome)) {
             $query->where('nome', 'like', '%' . $request->nome . '%');
         }
 
-        // Verifica se o parâmetro 'cpf' foi enviado e adiciona à query
+        // Filtrar por CPF
         if ($request->has('cpf') && !empty($request->cpf)) {
             $query->where('cpf', 'like', '%' . $request->cpf . '%');
         }
 
-        // Verifica se o parâmetro 'data_nascimento' foi enviado e adiciona à query
+        // Filtrar por data de nascimento
         if ($request->has('data_nascimento') && !empty($request->data_nascimento)) {
             $query->whereDate('data_nascimento', $request->data_nascimento);
         }
 
-        // Verifica se o parâmetro 'cidade' foi enviado e adiciona à query
+        // Filtrar por cidade (relacionamento)
         if ($request->has('cidade') && !empty($request->cidade)) {
             $query->whereHas('cidade', function($q) use ($request) {
                 $q->where('nome', 'like', '%' . $request->cidade . '%');
             });
         }
 
-        // Verifica se o parâmetro 'sexo' foi enviado e adiciona à query
+        // Filtrar por sexo
         if ($request->has('sexo') && !empty($request->sexo)) {
             $query->where('sexo', $request->sexo);
         }
 
-        // Executa a consulta com paginação (10 clientes por página)
+        // Paginação (10 clientes por página)
         $clientes = $query->paginate(10);
 
         // Retorna o resultado paginado
@@ -63,7 +63,7 @@ class ClienteApiController extends Controller
     // Criar um novo cliente
     public function store(Request $request)
     {
-        // Validação
+        // Validação dos dados
         $validated = $request->validate([
             'nome' => 'required|string|max:255',
             'cpf' => 'required|string|max:14|unique:clientes,cpf',
@@ -78,14 +78,14 @@ class ClienteApiController extends Controller
         // Criação do cliente
         $cliente = Cliente::create($validated);
 
-        // Retorno de resposta JSON
+        // Retorna o cliente recém-criado
         return response()->json(['success' => true, 'cliente' => $cliente], 201);
     }
 
     // Atualizar um cliente existente
     public function update(Request $request, $id)
     {
-        // Validação
+        // Validação dos dados de entrada
         $validated = $request->validate([
             'nome' => 'required|string|max:255',
             'cpf' => 'required|string|max:14|unique:clientes,cpf,' . $id,
@@ -97,11 +97,11 @@ class ClienteApiController extends Controller
             'cidade_id' => 'required|exists:cidades,id',
         ]);
 
-        // Busca e atualização do cliente
+        // Atualização do cliente
         $cliente = Cliente::findOrFail($id);
         $cliente->update($validated);
 
-        // Retorno de resposta JSON
+        // Retorno da resposta com os dados atualizados
         return response()->json(['success' => true, 'cliente' => $cliente], 200);
     }
 
@@ -109,9 +109,10 @@ class ClienteApiController extends Controller
     public function destroy($id)
     {
         $cliente = Cliente::findOrFail($id);
+
+        // Excluir o cliente
         $cliente->delete();
 
-        // Retorno de resposta JSON
         return response()->json(['success' => true, 'message' => 'Cliente deletado com sucesso!'], 200);
     }
 }

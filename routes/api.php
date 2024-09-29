@@ -3,22 +3,32 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ClienteApiController;
 use App\Http\Controllers\Api\CidadeApiController;
+use App\Http\Controllers\Api\RepresentanteApiController;
 
-// Rota da API para listar clientes
-Route::get('/clientes', [ClienteApiController::class, 'index']);
+// Rotas de Clientes
+Route::prefix('clientes')->group(function () {
+    Route::get('/', [ClienteApiController::class, 'index']);
+    Route::post('/', [ClienteApiController::class, 'store']);
+    Route::get('/{id}', [ClienteApiController::class, 'show']);
+    Route::put('/{id}', [ClienteApiController::class, 'update']);
+    Route::delete('/{id}', [ClienteApiController::class, 'destroy']);
+});
 
-// Rota da API para mostrar um cliente específico
-Route::get('/clientes/{id}', [ClienteApiController::class, 'show']);
+// Rotas de Cidades
+Route::prefix('cidades')->group(function () {
+    Route::get('/', [CidadeApiController::class, 'index']);
+    Route::post('/', [CidadeApiController::class, 'store']);
+    Route::get('/{id}', [CidadeApiController::class, 'show']);
+    Route::put('/{id}', [CidadeApiController::class, 'update']);
+    Route::delete('/{id}', [CidadeApiController::class, 'destroy']);
+});
 
-// Rota para criar um novo cliente (requisição POST)
-Route::post('/clientes', [ClienteApiController::class, 'store']);
+// Rotas de Representantes
+Route::prefix('representantes')->group(function () {
+    Route::get('/', [RepresentanteApiController::class, 'index']);
+    Route::post('/', [RepresentanteApiController::class, 'store']);
+    Route::get('/{id}', [RepresentanteApiController::class, 'show']);
+    Route::put('/{id}', [RepresentanteApiController::class, 'update']);
+    Route::delete('/{id}', [RepresentanteApiController::class, 'destroy']);
+});
 
-// Rota para atualizar um cliente existente (requisição PUT ou PATCH)
-Route::put('/clientes/{id}', [ClienteApiController::class, 'update']);
-Route::patch('/clientes/{id}', [ClienteApiController::class, 'update']);
-
-// Rota para excluir um cliente (requisição DELETE)
-Route::delete('/clientes/{id}', [ClienteApiController::class, 'destroy']);
-
-// Rota para buscar todas as cidades
-Route::get('/cidades', [CidadeApiController::class, 'index']);

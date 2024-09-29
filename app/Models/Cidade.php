@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cidade extends Model
 {
-    use HasFactory;
+    protected $fillable = ['nome'];
 
-    // Relacionamento com clientes
-    public function clientes()
+     public function clientes()
     {
         return $this->hasMany(Cliente::class);
+    }
+
+    public function representantes()
+    {
+        return $this->hasMany(Representante::class);
     }
 }
 
